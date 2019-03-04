@@ -14,7 +14,7 @@ struct Town {
     var population = 5422 {
         // Bronze Challenge
         willSet(newPopulation) {
-            if ( population < newPopulation ) {
+            if ( newPopulation < population ) {
                 print("warning! population has lowered")
                 
                 //Silver Challenge
