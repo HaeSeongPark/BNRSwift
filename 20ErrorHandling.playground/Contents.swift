@@ -1,16 +1,15 @@
 import Cocoa
 
 enum Token {
-    case number(Int)
-    //For Bronze Challenge
-    case minus
-    case plus
+    case number(value : Int, position : Int)
+    case minus(position : Int)
+    case plus(position: Int)
 }
 
 class Lexer {
     
     enum Error:Swift.Error {
-        case InvalidCharacter(Character)
+        case InvalidCharacter(position:Int, invalidCharacer: Character)
     }
     
     let input: String
@@ -55,29 +54,29 @@ class Lexer {
     }
     
     
-    func lext() throws -> [Token] {
+    func lex() throws -> [Token] {
         var tokens = [Token]()
         
         while let nextCharacter = peek() {
+            let distanceToPosition = input.distance(from: input.startIndex, to: position)
+            
             switch nextCharacter {
             case "0"..."9":
                 // start of a number - need to grab the rest
 //                let value = getNumber() // I don't like temp variable
-                tokens.append(.number(getNumber()))
+                tokens.append(.number(value: getNumber(), position: distanceToPosition))
             case "+":
-                tokens.append(.plus)
+                tokens.append(.plus(position: distanceToPosition))
                 advance()
-// For Bronze Challenge
             case "-":
-                tokens.append(.minus)
+                tokens.append(.minus(position: distanceToPosition))
                 advance()
             case " ":
                 // Just advance to ignore spaces
                 advance()
             default:
-                print("")
                 // like return, throw causes the function to immedatetly stop excuting and go back to its caller.
-                throw Error.InvalidCharacter(nextCharacter)
+                throw Error.InvalidCharacter(position: distanceToPosition, invalidCharacer: nextCharacter)
                 // something unexpected - need to send back an error
             }
         }
@@ -88,7 +87,7 @@ class Lexer {
 class Parser {
     enum Error: Swift.Error {
         case UnexpectedEndOfInput
-        case InvalidToken(Token)
+        case InvalidToken(position:Int, invalidToken: String)
     }
     
     let tokens: [Token]
@@ -113,12 +112,12 @@ class Parser {
         }
         
         switch token {
-        case .number(let value):
+        case .number(let value, _):
             return value
-        case .plus:
-            throw Error.InvalidToken(token)
+        case .plus(let position):
+            throw Error.InvalidToken(position:position, invalidToken: "+")
         case .minus:
-            throw Error.InvalidToken(token)
+            throw Error.InvalidToken(position:position, invalidToken: "-")
         }
     }
     
@@ -133,20 +132,24 @@ class Parser {
                 // After a plus, we must get another number
                 let nextNumber = try getNumber()
                 value += nextNumber
-// For Bronze Challenge
             case .minus:
                 let nextNumber = try getNumber()
                 value -= nextNumber
-            case .number:
-                throw Error.InvalidToken(token)
+            case .number(let value, let position):
+                throw Error.InvalidToken(position: position, invalidToken: String(value))
             }
         }
         return value
     }
 }
 
+let placeHolderOfEvalute = "Evaluating: "
+func emptySpace(of distanceToPosition: Int) -> String {
+    return repeatElement(" ", count: placeHolderOfEvalute.count + distanceToPosition).joined(separator: "")
+}
+
 func evaluate(_ input:String) {
-    print("Evaluating: \(input)")
+    print("\(placeHolderOfEvalute)\(input)")
     let lexer = Lexer(input: input)
     
 //    guard let tokens = try? lexer.lex() else {
@@ -155,25 +158,27 @@ func evaluate(_ input:String) {
 //    }
     
     do {
-        let tokens = try lexer.lext()
-        print("Lexer output: \(tokens)")
-        
+        let tokens = try lexer.lex()
         let parser = Parser(tokens: tokens)
         let result = try parser.parse()
         print("Parser output: \(result)")
-    } catch Lexer.Error.InvalidCharacter(let char){
-        print("Input contained an invalid chracter: \(char)")
+    } catch Lexer.Error.InvalidCharacter(let distanceToPosition, let char){
+        print("\(emptySpace(of: distanceToPosition))^")
+        print("Input contained an invalid at index \(distanceToPosition) : \(char)")
     } catch Parser.Error.UnexpectedEndOfInput {
         print("Unexpected end of input during parsing")
-    } catch Parser.Error.InvalidToken(let token) {
+    } catch Parser.Error.InvalidToken(let distanceToPosition, let token) {
+        print("\(emptySpace(of: distanceToPosition))^")
+
         print("Invalid token during parsing : \(token)")
     } catch {
         print("An error ocurred: \(error)")
     }
+    print("\n--------------------------------\n")
 }
-// For Bronze Challenge
-evaluate("10 + 5 - 3 - 1") // should be 11
 
+evaluate("10 + 5 - 3 - 1") // should be 11
+evaluate("1 + 3 + 7a + 8") // Input contained an invalid at index 9 : a
 evaluate("10 + 3 + 5") // should be 18
-evaluate("10 + 3 5") // Invalid token during paring : number(5)
+evaluate("10 + 3 5") // Invalid token during parsing : 5
 evaluate("10 + ") // Unexpected end of input during parsing
