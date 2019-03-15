@@ -4,6 +4,8 @@ enum Token {
     case number(value : Int, position : Int)
     case minus(position : Int)
     case plus(position: Int)
+    case multiply(postion : Int)
+    case divide(position : Int)
 }
 
 class Lexer {
@@ -71,6 +73,12 @@ class Lexer {
             case "-":
                 tokens.append(.minus(position: distanceToPosition))
                 advance()
+            case "*":
+                tokens.append(.multiply(postion: distanceToPosition))
+                advance()
+            case "/":
+                tokens.append(.divide(position: distanceToPosition))
+                advance()
             case " ":
                 // Just advance to ignore spaces
                 advance()
@@ -116,8 +124,12 @@ class Parser {
             return value
         case .plus(let position):
             throw Error.InvalidToken(position:position, invalidToken: "+")
-        case .minus:
+        case .minus(let position):
             throw Error.InvalidToken(position:position, invalidToken: "-")
+        case .multiply(let position):
+            throw Error.InvalidToken(position: position, invalidToken: "*")
+        case .divide(let position):
+            throw Error.InvalidToken(position: position, invalidToken: "/")
         }
     }
     
@@ -130,11 +142,17 @@ class Parser {
             // Getting a Plus after a Number is legal
             case .plus:
                 // After a plus, we must get another number
-                let nextNumber = try getNumber()
+                let nextNumber = try parse()
                 value += nextNumber
             case .minus:
-                let nextNumber = try getNumber()
+                let nextNumber = try parse()
                 value -= nextNumber
+            case .multiply:
+                let nextNumber = try getNumber()
+                value *= nextNumber
+            case .divide:
+                let nextNumber = try getNumber()
+                value /= nextNumber
             case .number(let value, let position):
                 throw Error.InvalidToken(position: position, invalidToken: String(value))
             }
@@ -177,8 +195,12 @@ func evaluate(_ input:String) {
     print("\n--------------------------------\n")
 }
 
-evaluate("10 + 5 - 3 - 1") // should be 11
+evaluate("10 * 3 + 5 * 3")
+evaluate("10 + 3 * 5 + 3")
+evaluate("10 + 3 * 5 * 3")
+
 evaluate("1 + 3 + 7a + 8") // Input contained an invalid at index 9 : a
-evaluate("10 + 3 + 5") // should be 18
 evaluate("10 + 3 5") // Invalid token during parsing : 5
+evaluate("10 + 5 - 3 - 1") // should be 11
+evaluate("10 + 3 + 5") // should be 18
 evaluate("10 + ") // Unexpected end of input during parsing
