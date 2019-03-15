@@ -2,6 +2,8 @@ import Cocoa
 
 enum Token {
     case number(Int)
+    //For Bronze Challenge
+    case minus
     case plus
 }
 
@@ -65,6 +67,10 @@ class Lexer {
             case "+":
                 tokens.append(.plus)
                 advance()
+// For Bronze Challenge
+            case "-":
+                tokens.append(.minus)
+                advance()
             case " ":
                 // Just advance to ignore spaces
                 advance()
@@ -111,6 +117,8 @@ class Parser {
             return value
         case .plus:
             throw Error.InvalidToken(token)
+        case .minus:
+            throw Error.InvalidToken(token)
         }
     }
     
@@ -125,6 +133,10 @@ class Parser {
                 // After a plus, we must get another number
                 let nextNumber = try getNumber()
                 value += nextNumber
+// For Bronze Challenge
+            case .minus:
+                let nextNumber = try getNumber()
+                value -= nextNumber
             case .number:
                 throw Error.InvalidToken(token)
             }
@@ -159,7 +171,9 @@ func evaluate(_ input:String) {
         print("An error ocurred: \(error)")
     }
 }
+// For Bronze Challenge
+evaluate("10 + 5 - 3 - 1") // should be 11
 
-evaluate("10 + 3 + 5")
-evaluate("10 + 3 5")
-evaluate("10 + ")
+evaluate("10 + 3 + 5") // should be 18
+evaluate("10 + 3 5") // Invalid token during paring : number(5)
+evaluate("10 + ") // Unexpected end of input during parsing
