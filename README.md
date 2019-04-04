@@ -12,6 +12,9 @@ The Big nerd Ranch Swift Programming 2ed.
 |Ch.17 Initialzation |[link](https://haeseongpark.github.io/swift/BNRSwift-EndOfChapter17/)   |   [link](https://github.com/HaeSeongPark/BNRSwift/tree/master/17MonsterTown)|
 |Ch.17 Silver Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.17-Silver-Challenge/)   |  |
 |Ch.17 Gold Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.17-Gold-Challenge/#)   |  |
+|Ch.19 Protocols |[link](https://haeseongpark.github.io/swift/BNRSwift-EndOfChapter19/)   |   [link](https://github.com/HaeSeongPark/BNRSwift/tree/master/17MonsterTown)|
+|Ch.19 Silver Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.19-Silver-Challenge/)   |  |
+|Ch.19 Gold Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.19-Gold-Challenge/)   |  |
 |Ch.20 Error Handling |[link](https://haeseongpark.github.io/swift/BNRSwift-EndOfChapter20/)   |   [link](https://github.com/HaeSeongPark/BNRSwift/blob/master/20ErrorHandling.playground/Contents.swift)|
 |Ch.20 Bronze Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.20-Bronze-Challenge/#)   |   [link](https://github.com/HaeSeongPark/BNRSwift/commit/3a881f317f856b35c422d69cef7351beda91e64d)|
 |Ch.20 Silver Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.20-Silver-Challenge/#)   |   [link](https://github.com/HaeSeongPark/BNRSwift/commit/a2b98ec595c30cd1f380d9fa84f6999efd058365)|
