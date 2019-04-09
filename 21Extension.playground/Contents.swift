@@ -26,6 +26,7 @@ struct Car {
     let year: Int
     let color: String
     let nickNname: String
+    var numberOfDoors:Int
     var gasLevel: Double {
         willSet {
             precondition(newValue <= 1.0 && newValue >= 0.0,
@@ -36,13 +37,12 @@ struct Car {
 // protocol conformance
 extension Car: Vehicle {
     var topSpeed: Velocity { return 180 }
-    var numberOfDoors: Int { return 4 }
     var hasFlatbed: Bool { return false }
 }
 // adding an initialzer
 extension Car {
     init(carMake: String, carModel:String, carYear:Int) {
-       self.init(make: carMake, model: carModel, year: carYear, color: "Black", nickNname: "N/A", gasLevel: 1.0)
+        self.init(make: carMake, model: carModel, year: carYear, color: "Black", nickNname: "N/A", numberOfDoors: 4, gasLevel: 1.0)
     }
 }
 
