@@ -75,7 +75,7 @@ car.kind.description
 // adding functions
 extension Car {
     mutating func emptyGas(amount: Double) {
-        precondition(amount <= 1 && amount > 0, "Amount to remove must be between 0 and 1.")
+        precondition(amount <= gasLevel && amount > 0, "Amount to remove must be between 0 and currnet gasLevel.")
         gasLevel -= amount
     }
     
