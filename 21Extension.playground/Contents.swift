@@ -87,3 +87,11 @@ car.emptyGas(amount: 0.3)
 car.gasLevel
 car.fillGas()
 car.gasLevel
+
+// First Bronze Challenge
+extension Int {
+    var timeFive: Int {
+        return self * 5
+    }
+}
+5.timeFive
