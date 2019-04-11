@@ -149,3 +149,32 @@ func findAll<T:Equatable>(_ elements:[T],_ elementToFind:T) -> [Int] {
 }
 
 print(findAll([5,3,7,3,9], 3))
+
+
+func findAllUsingCollection<T:Collection, U:Equatable>(_ colleecion:T, _ elementToFind:U) -> [T.Index] where T.Iterator.Element == U {
+    var result = [T.Index]()
+    var index = colleecion.startIndex
+    
+    for item in colleecion {
+        if item == elementToFind {
+            result.append(index)
+        }
+        index = colleecion.index(after: index)
+    }
+    return result
+}
+
+print(findAllUsingCollection([5,3,7,3,9], 3))
+
+
+// I found a elegant solution
+// https://forums.bignerdranch.com/t/bronze-silver-gold-challenges-ch-22/10752/3
+extension Collection where Iterator.Element: Equatable {
+    func findAll(_ element: Iterator.Element) -> [Index] {
+        return indices.reduce([]) {
+            element == self[$1] ? $0 + [$1] : $0
+        }
+    }
+}
+
+print([5,3,7,3,9].findAll(3))
