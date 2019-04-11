@@ -137,3 +137,15 @@ for value in myStack {
 
 let evenNumbers = myStack.filter { $0 % 2 == 0}
 print(evenNumbers)
+
+func findAll<T:Equatable>(_ elements:[T],_ elementToFind:T) -> [Int] {
+    var findedIndexs = [Int]()
+    for (index, element) in elements.enumerated() {
+        if element == elementToFind {
+            findedIndexs.append(index)
+        }
+    }
+    return findedIndexs
+}
+
+print(findAll([5,3,7,3,9], 3))
