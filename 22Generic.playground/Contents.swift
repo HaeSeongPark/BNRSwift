@@ -32,6 +32,16 @@ struct Stack<Element>: Sequence {
         return Stack<U>(items: mappdItems)
     }
     
+    func filter(_ isIncluded: (Element) -> Bool) -> [Element] {
+        var result = [Element]()
+        for item in items {
+            if isIncluded(item) {
+                result.append(item)
+            }
+        }
+        return result
+    }
+    
     func makeIterator() -> StackIterator<Element>{
         return StackIterator(stack:self)
     }
@@ -124,3 +134,6 @@ pushItemsOntoStack(stack: &myStack, fromSqequence: [1,2,3])
 for value in myStack {
     print("After pushing : got \(value)")
 }
+
+let evenNumbers = myStack.filter { $0 % 2 == 0}
+print(evenNumbers)
