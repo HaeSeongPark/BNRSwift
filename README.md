@@ -21,6 +21,10 @@ The Big nerd Ranch Swift Programming 2ed.
 |Ch.20 Gold Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.20-Gold-Challenge/#)   |     [link](https://github.com/HaeSeongPark/BNRSwift/commit/54f1fea9861272d899a6e001ca3d3b8a5d4a21eb)
 |Ch.21 Extension |[link](https://haeseongpark.github.io/swift/BNRSwift-EndOfChapter21/#)   |   [link](hhttps://github.com/HaeSeongPark/BNRSwift/blob/master/21Extension.playground/Contents.swift)|
 |challenges of ch21. extension| no need to say. so easy|
+|Ch.22 Generic |[link](https://haeseongpark.github.io/swift/BNRSwift-EndOfChapter22/)  ||
+|Ch.22 Bronze Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.22-Bronze-Challenge/)   |  |
+|Ch.22 Silver Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.22-Silver-Challenge/)   | |
+|Ch.22 Gold Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.22-Gold-Challenge/)   |   
 |Ch.24 Memory Management And ARC |[link](https://haeseongpark.github.io/swift/BNRSwift-EndOfChapter24/)   |   [link](https://github.com/HaeSeongPark/BNRSwift/tree/master/24CyclicalAssets/CyclicalAssets)|
 |Ch.24 Bronze Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.24-Bronze-Challenge/)   |   [link1](https://github.com/HaeSeongPark/BNRSwift/blob/master/24CyclicalAssets/CyclicalAssets/Person.swift#L45)  &nbsp;  [link2](https://github.com/HaeSeongPark/BNRSwift/blob/master/24CyclicalAssets/CyclicalAssets/Accountant.swift/#L26) &nbsp; [link3](https://github.com/HaeSeongPark/BNRSwift/blob/master/24CyclicalAssets/CyclicalAssets/Asset.swift#L33)|
 |Ch.24 Silver Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.24-Silver-Challenge/)   |   [link](https://github.com/HaeSeongPark/BNRSwift/blob/master/24CyclicalAssets/CyclicalAssets/Person.swift#L33)|
