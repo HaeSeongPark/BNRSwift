@@ -4,17 +4,20 @@ protocol Exercise : CustomStringConvertible {
     var name: String { get }
     var caloriesBurned: Double { get }
     var minutes: Double { get }
+    var title: String { get }
 }
 
 extension Exercise {
     var description: String {
         return "Exercise(\(name), burned \(caloriesBurned) calories in \(minutes) minutes)"
     }
+    var title: String {
+        return "\(name) - \(minutes) muntures"
+    }
 }
 
 struct EllipticalWorkout:Exercise {
     let name = "Elliptical Workout"
-    let title = "Workout using the Go Fast Elliptical Trainer 3000"
     let caloriesBurned: Double
     let minutes: Double
 }
@@ -62,14 +65,6 @@ extension Sequence where Iterator.Element == Exercise {
 let mondayWorkout:[Exercise] = [ellipticalWorkOut, runningWorkout]
 print(mondayWorkout.totalCaloriesBurned())
 
-extension Exercise {
-    var title: String {
-        return "\(name) - \(minutes) muntures"
-    }
-}
-
 for exercise in mondayWorkout {
     print(exercise.title)
 }
-
-print(ellipticalWorkOut.title)
