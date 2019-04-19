@@ -12,6 +12,7 @@ The Big nerd Ranch Swift Programming 2ed.
 |Ch.17 Initialzation |[link](https://haeseongpark.github.io/swift/BNRSwift-EndOfChapter17/)   |   [link](https://github.com/HaeSeongPark/BNRSwift/tree/master/17MonsterTown)|
 |Ch.17 Silver Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.17-Silver-Challenge/)   |  |
 |Ch.17 Gold Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.17-Gold-Challenge/#)   |  |
+|Ch.18 Value and Reference |[link](https://haeseongpark.github.io/swift/BNRSwift-EndOfChapter18/)   |   [link](https://github.com/HaeSeongPark/BNRSwift/blob/master/18ValueVsRef.playground/Contents.swift)|
 |Ch.19 Protocols |[link](https://haeseongpark.github.io/swift/BNRSwift-EndOfChapter19/)   |   [link](https://github.com/HaeSeongPark/BNRSwift/tree/master/17MonsterTown)|
 |Ch.19 Silver Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.19-Silver-Challenge/)   |  |
 |Ch.19 Gold Challenge |[link](https://haeseongpark.github.io/swift/BNRSwift-Ch.19-Gold-Challenge/)   |  |
